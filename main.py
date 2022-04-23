@@ -44,6 +44,7 @@ def get_user_id():
 
 
 # with this function we handle sending the users HWID to our pastebin
+# a new private paste name NEW HWID will show up on your pastebin. You'll have to manually add the new HWID to your main HWID storage paste. 
 def pastebin():
     try:
         if get_user_id() != "your_own_hwid":
