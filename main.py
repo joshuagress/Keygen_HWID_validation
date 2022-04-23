@@ -1,8 +1,8 @@
-#Simple user validation using Pastebin by joshuagress/joda12345
+# Simple user validation using Pastebin by joshuagress/joda12345
 
-#Installs:
-#pip install pbwrap
-#pip install key_generator
+# Installs:
+# pip install pbwrap
+# pip install key_generator
 
 from os.path import exists
 import os
@@ -15,16 +15,20 @@ import sys
 
 
 # setup of pastebin
+# everyone gets an api dev key upon creating a pastebin account
 API_DEV_KEY = ""
 p = Pastebin(api_dev_key=API_DEV_KEY)
 USERNAME = ""
 PASSWORD = ""
 p.authenticate(username=USERNAME, password=PASSWORD)
+# ALL_HWID will hold the id of the private pastebin containing all the HWIDs. e.g. https://pastebin.com/id_of_paste
+# check out pbwrap docs for more information on Pastebin methods
 ALL_HWID = ""
 HWID_RAW = p.get_user_raw_paste(ALL_HWID)
 
 
 # with this we generate a random serial key
+# check out key_generator docs for more information on their methods
 def generate_random_serial_key():
     serial_key = generate(seed=random.randint(1, 500), num_of_atom=5, separator="-", min_atom_len=5, max_atom_len=5).get_key()
     return serial_key
@@ -48,7 +52,7 @@ def pastebin():
         input("Error! Please contact me at ####")
 
 
-# with this function we can create a new user incase the HWID matches yours.
+# here we can create a new user incase the HWID matches yours aka the admins.
 # we store the new unique serial key in unique_serial_key.txt and overwrite this file every time we create a new user
 # we also got a file called all_serial_keys which we append all created users to
 # we keep generating new serial keys while serial key already exists
