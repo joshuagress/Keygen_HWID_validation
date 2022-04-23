@@ -48,10 +48,11 @@ def pastebin():
         input("Error! Please contact me at ####")
 
 
-# with this function we can create a new user incase the HWID matches mine.
+# with this function we can create a new user incase the HWID matches yours.
 # we store the new unique serial key in unique_serial_key.txt and overwrite this file every time we create a new user
 # we also got a file called all_serial_keys which we append all created users to
 # we keep generating new serial keys while serial key already exists
+# when distributing your app you will have to include the unique_serial_key.txt in the same folder as your .exe
 def create_new_user():
     if get_user_id() == "your_own_hwid":
         serial_key = generate_random_serial_key()
@@ -84,6 +85,7 @@ def check_serial_key():
         try:
             serial_key = input("Enter your serial key >: ")
             with open("unique_serial_key.txt", "r") as sk:
+                # . means any character, {5} the number of occurences, ^ start of regex, $ end of regex
                 rex = re.compile("^.{5}-.{5}-.{5}-.{5}-.{5}$")
                 user_serial_key = sk.read()
             if serial_key in user_serial_key and rex.match(serial_key):
